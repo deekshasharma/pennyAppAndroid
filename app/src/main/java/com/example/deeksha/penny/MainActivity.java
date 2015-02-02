@@ -1,6 +1,8 @@
 package com.example.deeksha.penny;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -49,7 +51,8 @@ public class MainActivity extends ActionBarActivity
         System.out.println("Position now is "+ position);
         if(position == 0)
         {
-            Fragment fragment = TransactionItemFragment.newInstance(position);
+//            Fragment fragment = TransactionItemFragment.newInstance(position);
+            Fragment fragment = new AddTransactionFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
         }
@@ -87,6 +90,7 @@ public class MainActivity extends ActionBarActivity
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#39B5E4")));
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);

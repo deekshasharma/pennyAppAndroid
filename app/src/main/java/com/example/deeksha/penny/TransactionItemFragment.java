@@ -3,17 +3,18 @@ package com.example.deeksha.penny;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
 
-import com.example.deeksha.penny.dummy.DummyContent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,8 @@ public class TransactionItemFragment extends Fragment implements AbsListView.OnI
     private OnFragmentInteractionListener mListener;
     private AbsListView mListView;
     private ListAdapter mAdapter;
+    private ImageButton addTransaction;
+
 
     public static TransactionItemFragment newInstance(int position) {
         TransactionItemFragment fragment = new TransactionItemFragment();
@@ -56,19 +59,31 @@ public class TransactionItemFragment extends Fragment implements AbsListView.OnI
 
         mAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1,  transactionList);
-//        android.R.id.text1,
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item, container, false);
-
         mListView = (AbsListView) view.findViewById(android.R.id.list);
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
-        return view;
+                return view;
     }
+
+//    @Override
+//    public void onClick(View v) {
+
+//        addTransaction = (ImageButton) v.findViewById(R.id.addTransactionButton);
+//        addTransaction.setOnClickListener(this);
+
+//        Fragment fragment = new SummaryFragment();
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//        transaction.replace(R.id.container,fragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -83,6 +98,7 @@ public class TransactionItemFragment extends Fragment implements AbsListView.OnI
         }
     }
 
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -95,7 +111,7 @@ public class TransactionItemFragment extends Fragment implements AbsListView.OnI
         if (null != mListener) {
 //            Notify the active callbacks interface (the activity, if the
 //            fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+//            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
         }
     }
 
@@ -111,6 +127,7 @@ public class TransactionItemFragment extends Fragment implements AbsListView.OnI
             ((TextView) emptyView).setText(emptyText);
         }
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
