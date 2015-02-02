@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,7 +19,7 @@ import java.util.Locale;
 
 public class AddTransactionFragment extends Fragment implements View.OnClickListener,DatePickerDialog.OnDateSetListener {
 
-    private EditText date;
+    private TextView date;
     private int day;
     private int month;
     private int year;
@@ -37,12 +38,14 @@ public class AddTransactionFragment extends Fragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_add_transaction, container, false);
+        View view    = inflater.inflate(R.layout.fragment_add_transaction, container, false);
+        findViewsById(view);
+        return view;
     }
 
-    private void findViewsById()
+    public void findViewsById(View view)
     {
-        date = (EditText) getView().findViewById(R.id.date);
+        date = (TextView) view.findViewById(R.id.date);
         date.setOnClickListener(this);
 
     }

@@ -1,7 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.deeksha.penny.AddTransactionFragment">
+    tools:context="com.example.deeksha.penny.AddTransactionFragment"
+    android:clickable="true">
 
 
     <EditText
@@ -28,18 +29,6 @@
         android:hint="Amount"
         android:paddingTop="20dip" />
 
-    <EditText
-        android:layout_width="255dp"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/date"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_marginTop="400dip"
-        android:background="@drawable/back"
-        android:hint="Date"
-        android:paddingTop="20dip" />
-
     <TextView
         android:layout_width="253dp"
         android:layout_height="wrap_content"
@@ -57,5 +46,16 @@
         android:id="@+id/addTransaction"
         android:layout_gravity="center"
         android:layout_marginTop="250dip" />
+
+    <TextView
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/date"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="400dip"
+        android:background="@drawable/back"
+        android:paddingTop="20dip"
+        android:hint="Date" />
 
 </FrameLayout>
