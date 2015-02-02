@@ -1,15 +1,12 @@
 package com.example.deeksha.penny;
-
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.v4.app.Fragment;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -17,15 +14,14 @@ import java.util.Calendar;
 import java.util.Locale;
 
 
-public class AddTransactionFragment extends Fragment implements View.OnClickListener,DatePickerDialog.OnDateSetListener {
+public class AddTransactionFragment extends Fragment implements View.OnClickListener {
 
     private TextView date;
-    private int day;
-    private int month;
-    private int year;
-
-
-
+    private Calendar myCalender ;
+    private DatePickerDialog datePickerDialog;
+    private String[] allMonths = {
+            "JAN","FEB", "MAR","APR", "MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"
+    };
 
 
     public AddTransactionFragment()
@@ -40,36 +36,48 @@ public class AddTransactionFragment extends Fragment implements View.OnClickList
     {
         View view    = inflater.inflate(R.layout.fragment_add_transaction, container, false);
         findViewsById(view);
+        setDate();
         return view;
     }
 
+    /*
+     Find the view for date field
+    */
     public void findViewsById(View view)
     {
         date = (TextView) view.findViewById(R.id.date);
         date.setOnClickListener(this);
-
     }
+
+
     @Override
     public void onClick(View v) {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),this,2015,2,2);
-        datePickerDialog.show();
-
+        if(v == date)
+        {datePickerDialog.show();}
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+    /*
+    Allows user to select the date in a date picker and set the value in date field.
+     */
+    private void setDate()
     {
-        this.year = year;
-        this.month = monthOfYear;
-        this.day = dayOfMonth;
-        updateDisplay();
+        myCalender = Calendar.getInstance();
+        datePickerDialog = new DatePickerDialog(getActivity(),
+                new DatePickerDialog.OnDateSetListener()
+                {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+                    {
+                        Calendar selectedDate = Calendar.getInstance();
+                        selectedDate.set(year,monthOfYear,dayOfMonth);
+                        String month = allMonths[selectedDate.get(Calendar.MONTH)];
+                        date.setText(new StringBuilder()
+                                .append(selectedDate.get(Calendar.DAY_OF_MONTH)).append("-")
+                                .append(month).append("-")
+                                .append(selectedDate.get(Calendar.YEAR)));
+                    }
+                }
+        ,myCalender.get(Calendar.YEAR),myCalender.get(Calendar.MONTH),myCalender.get(Calendar.DAY_OF_MONTH));
     }
-
-    private void updateDisplay()
-    {
-        date.setText(new StringBuilder().append(day).append("/").append(month+1).append("/").append(year).append(" "));
-    }
-
-//
 
 }
