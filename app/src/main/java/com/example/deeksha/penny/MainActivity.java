@@ -17,7 +17,8 @@ import android.support.v4.widget.DrawerLayout;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, TransactionItemFragment.OnFragmentInteractionListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, TransactionItemFragment.OnFragmentInteractionListener,
+GroupFragment.OnFragmentInteractionListener{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -48,11 +49,11 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
 
-        System.out.println("Position now is "+ position);
         if(position == 0)
         {
+            Fragment fragment = new GroupFragment();
 //            Fragment fragment = TransactionItemFragment.newInstance(position);
-            Fragment fragment = new AddTransactionFragment();
+//            Fragment fragment = new AddTransactionFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
         }

@@ -13,22 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Large screen devices (such as tablets) are supported by replacing the ListView
- * with a GridView.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
- * interface.
- */
-public class TransactionItemFragment extends Fragment implements AbsListView.OnItemClickListener {
+
+public class TransactionItemFragment extends Fragment implements AbsListView.OnItemClickListener{
 
     private static final String POSITION = "position";
     private OnFragmentInteractionListener mListener;
@@ -51,8 +40,8 @@ public class TransactionItemFragment extends Fragment implements AbsListView.OnI
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Transaction transaction1 = new Transaction("India Bazar", "$45.8");
-        Transaction transaction2 = new Transaction("Sprouts", "$24");
+        Transaction transaction1 = new Transaction("Costco", "$45.8");
+        Transaction transaction2 = new Transaction("Chevron", "$24");
         List<Transaction> transactionList = new ArrayList<>();
         transactionList.add(transaction1);
         transactionList.add(transaction2);
@@ -65,15 +54,18 @@ public class TransactionItemFragment extends Fragment implements AbsListView.OnI
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item, container, false);
+
         mListView = (AbsListView) view.findViewById(android.R.id.list);
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
+
+
                 return view;
     }
 
 //    @Override
 //    public void onClick(View v) {
-
+//
 //        addTransaction = (ImageButton) v.findViewById(R.id.addTransactionButton);
 //        addTransaction.setOnClickListener(this);
 
@@ -115,11 +107,6 @@ public class TransactionItemFragment extends Fragment implements AbsListView.OnI
         }
     }
 
-    /**
-     * The default content for this Fragment has a TextView that is shown when
-     * the list is empty. If you would like to change the text, call this method
-     * to supply the text it should use.
-     */
     public void setEmptyText(CharSequence emptyText) {
         View emptyView = mListView.getEmptyView();
 
@@ -129,18 +116,7 @@ public class TransactionItemFragment extends Fragment implements AbsListView.OnI
     }
 
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
     }
 

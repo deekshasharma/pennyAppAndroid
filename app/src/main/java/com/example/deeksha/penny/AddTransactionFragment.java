@@ -1,17 +1,13 @@
 package com.example.deeksha.penny;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 
 public class AddTransactionFragment extends Fragment implements View.OnClickListener {
@@ -28,7 +24,6 @@ public class AddTransactionFragment extends Fragment implements View.OnClickList
     {
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
